@@ -27,6 +27,6 @@ ext {
         postgresql              :"org.postgresql:postgresql:$versions.postgresql",
         mapstruct               :"org.mapstruct:mapstruct:$versions.mapstruct",
         mapstructProcessor      :"org.mapstruct:mapstruct-processor:$versions.mapstruct",
-        swaggerui               :"org.springdoc:springdoc-ui:$versions.swaggerui"
+        swaggerui               :"org.springdoc:springdoc-openapi-ui:$versions.swaggerui"
     ]
 }
