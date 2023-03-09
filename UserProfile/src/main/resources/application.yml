@@ -1,12 +1,12 @@
 server:
-  port: 9090
+  port: 9093
 
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: 1316
-    url: jdbc:postgresql://localhost:5432/AuthDB
+    url: jdbc:postgresql://localhost:5432/UserDB
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -22,8 +22,3 @@ authservice:
   bunu-ben-yazdim:
     secret-key: ${JAVA_SECRETKEY}
     issuer: ${JAVA6_ISSUER}
-
-ornek:
-  deger1: bunedir
-  deger2: 45645654645
-  deger3: "buraya dikkat"

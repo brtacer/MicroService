@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-08T11:04:57+0300",
+    date = "2023-03-09T09:53:20+0300",
     comments = "version: 1.5.3.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.5.1.jar, environment: Java 17.0.5 (Amazon.com Inc.)"
 )
 @Component
@@ -19,7 +19,7 @@ public class IAuthMapperImpl implements IAuthMapper {
             return null;
         }
 
-        Auth.AuthBuilder auth = Auth.builder();
+        Auth.AuthBuilder<?, ?> auth = Auth.builder();
 
         auth.username( dto.getUsername() );
         auth.email( dto.getEmail() );

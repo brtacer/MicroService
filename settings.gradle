@@ -1,3 +1,6 @@
 rootProject.name = 'MicroService'
 include 'AuthMicroService'
+include 'UserProfile'
+include 'ProductMicroService'
+include 'SalesMicroService'
 

@@ -7,8 +7,8 @@ import com.berat.exception.EErrorType;
 import com.berat.mapper.IAuthMapper;
 import com.berat.repository.IAuthRepository;
 import com.berat.repository.entity.Auth;
+import com.berat.utility.JwtTokenManager;
 import com.berat.utility.ServiceManager;
-import com.berat.utility.TokenManager;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +16,9 @@ import java.util.Optional;
 @Service
 public class AuthService extends ServiceManager<Auth,Long> {
     private final IAuthRepository authRepository;
-    private final TokenManager tokenManager;
+    private final JwtTokenManager tokenManager;
 
-    public AuthService(IAuthRepository authRepository,TokenManager tokenManager) {
+    public AuthService(IAuthRepository authRepository,JwtTokenManager tokenManager) {
         super(authRepository);
         this.authRepository = authRepository;
         this.tokenManager=tokenManager;
@@ -38,17 +38,14 @@ public class AuthService extends ServiceManager<Auth,Long> {
         Optional<Auth> auth=authRepository.findOptionalByUsernameAndPassword(dto.getUsername(), dto.getPassword());
         if (auth.isEmpty())
             throw new AuthServiceException(EErrorType.LOGIN_ERROR_USERNAME_PASSWORD);
-        return tokenManager.createToken(auth.get().getId());
+        return tokenManager.createToken(auth.get().getId()).get();
     }
 
     public List<Auth> findAll(String token){
-        Long id=null;
-        try{
-            id= tokenManager.getIdByToken(token);
-        }catch (Exception exception){
+        Optional<Long> id=tokenManager.getByIdFromToken(token);
+        if (id.isEmpty())
             throw new AuthServiceException(EErrorType.INVALID_TOKEN);
-        }
-        if ( findById(id).isEmpty())
+        if ( findById(id.get()).isEmpty())
             throw new AuthServiceException(EErrorType.INVALID_TOKEN);
         return findAll();
 
