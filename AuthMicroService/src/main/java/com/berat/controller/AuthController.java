@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping(REGISTER)
-    public ResponseEntity<Auth> register(@RequestBody RegisterRequestDto dto){
+    public ResponseEntity<Auth> register(@RequestBody @Valid RegisterRequestDto dto){
         if (!dto.getPassword().equals(dto.getRepassword()))
             throw  new AuthServiceException(EErrorType.REGISTER_ERROR_PASSWORD_UNMATCH);
         return ResponseEntity.ok(authService.register(dto));

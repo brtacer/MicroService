@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -39,8 +36,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body("Uygulama da beklenmeyen bir hata oluştu.."+exception.getMessage());
     }
     @ResponseBody
-    @ExceptionHandler(AuthServiceException.class)
-    public ResponseEntity<ErrorMessage> handleSatisManagerException(AuthServiceException exception){
+    @ExceptionHandler(UserServiceException.class)
+    public ResponseEntity<ErrorMessage> handleSatisManagerException(UserServiceException exception){
 
         return new ResponseEntity<>(createErrorMessage(exception.getErrorType(),exception),exception.getErrorType().getHttpStatus());
     }
@@ -68,13 +65,10 @@ public class GlobalExceptionHandler {
      * /urun/findbyid/234/sort/desc
      * /urun/findbyid/sort/desc
      */
-    @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
-    public final ResponseEntity<ErrorMessage> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
-        EErrorType errorType = EErrorType.INVALID_PARAMETER;
-        List<String> fields = new ArrayList<>();
-        exception.getBindingResult().getFieldErrors().forEach(e -> fields.add(e.getField() + ": " + e.getDefaultMessage()));
-        ErrorMessage errorMessage = createErrorMessage(errorType,exception);
-        errorMessage.setFields(fields);
-        return new ResponseEntity<>(errorMessage, errorType.getHttpStatus());}
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorMessage> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception){
+        EErrorType errorType=EErrorType.METHOD_NOT_VALİD_ERROR;
+        return new ResponseEntity<>(createErrorMessage(errorType,exception),errorType.getHttpStatus());
+    }
 }

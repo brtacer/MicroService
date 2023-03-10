@@ -1,13 +1,14 @@
 package com.berat.mapper;
 
 import com.berat.dto.request.RegisterRequestDto;
+import com.berat.dto.request.UserProfileSaveRequestDto;
 import com.berat.repository.entity.Auth;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-09T09:53:20+0300",
+    date = "2023-03-10T11:19:11+0300",
     comments = "version: 1.5.3.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.5.1.jar, environment: Java 17.0.5 (Amazon.com Inc.)"
 )
 @Component
@@ -26,5 +27,20 @@ public class IAuthMapperImpl implements IAuthMapper {
         auth.password( dto.getPassword() );
 
         return auth.build();
+    }
+
+    @Override
+    public UserProfileSaveRequestDto fromAuth(Auth auth) {
+        if ( auth == null ) {
+            return null;
+        }
+
+        UserProfileSaveRequestDto.UserProfileSaveRequestDtoBuilder userProfileSaveRequestDto = UserProfileSaveRequestDto.builder();
+
+        userProfileSaveRequestDto.authid( auth.getId() );
+        userProfileSaveRequestDto.username( auth.getUsername() );
+        userProfileSaveRequestDto.email( auth.getEmail() );
+
+        return userProfileSaveRequestDto.build();
     }
 }

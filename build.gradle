@@ -42,6 +42,8 @@ allprojects {
         implementation libs.mapstruct
         implementation libs.swaggerui
         implementation libs.jwt
+        implementation libs.springCloudOpenFeign
+        implementation libs.springBootValidation
     }
 }
 
