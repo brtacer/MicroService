@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: "https://github.com/brtacer/config-server.git"
+          default-label: main
+          skip-ssl-validation: true
+          username: brtacer
+          password: ${GIT_KEY}

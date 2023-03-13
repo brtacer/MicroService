@@ -37,4 +37,8 @@ public class AuthController {
     public ResponseEntity<List<Auth>> findAll(String token){
         return ResponseEntity.ok(authService.findAll(token));
     }
+    @GetMapping("/message")
+    public ResponseEntity<String> getMessage(){
+        return ResponseEntity.ok("Genel bir mesaj");
+    }
 }

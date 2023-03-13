@@ -9,10 +9,13 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mapstruct/mapstruct-processor/1.5.3.Final/dce418bedafd71ff8dd2cef15006c0fee788b073/mapstruct-processor-1.5.3.Final.jar" />
         </processorPath>
         <module name="MicroService.main" />
+        <module name="MicroService.ApiGatewayService.main" />
+        <module name="MicroService.UserProfile.main" />
+        <module name="MicroService.ConfigServerGit.main" />
+        <module name="MicroService.ConfigServer.main" />
         <module name="MicroService.ProductMicroService.main" />
         <module name="MicroService.AuthMicroService.main" />
         <module name="MicroService.SalesMicroService.main" />
-        <module name="MicroService.UserProfile.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17" />
