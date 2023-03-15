@@ -45,6 +45,8 @@ allprojects {
         implementation libs.springCloudOpenFeign
         implementation libs.springBootValidation
         implementation libs.springCloudConfigClient
+        implementation libs.springCloudStarterSleuth
+        implementation libs.springCloudZipkin
     }
 }
 

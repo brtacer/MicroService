@@ -6,4 +6,5 @@ include 'SalesMicroService'
 include 'ConfigServer'
 include 'ConfigServerGit'
 include 'ApiGatewayService'
+include 'ElasticMicroService'
 

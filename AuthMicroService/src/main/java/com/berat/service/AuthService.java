@@ -6,6 +6,8 @@ import com.berat.exception.AuthServiceException;
 import com.berat.exception.EErrorType;
 import com.berat.manager.IUserProfileManager;
 import com.berat.mapper.IAuthMapper;
+import com.berat.rabbitmq.model.SaveAuthModel;
+import com.berat.rabbitmq.producer.CreateUserProducer;
 import com.berat.repository.IAuthRepository;
 import com.berat.repository.entity.Auth;
 import com.berat.utility.JwtTokenManager;
@@ -19,12 +21,15 @@ public class AuthService extends ServiceManager<Auth,Long> {
     private final IAuthRepository authRepository;
     private final JwtTokenManager tokenManager;
     private final IUserProfileManager iUserProfileManager;
+    private final CreateUserProducer createUserProducer;
 
-    public AuthService(IAuthRepository authRepository,JwtTokenManager tokenManager,IUserProfileManager iUserProfileManager) {
+    public AuthService(IAuthRepository authRepository,JwtTokenManager tokenManager,
+                       IUserProfileManager iUserProfileManager,CreateUserProducer createUserProducer) {
         super(authRepository);
         this.authRepository = authRepository;
         this.tokenManager=tokenManager;
         this.iUserProfileManager=iUserProfileManager;
+        this.createUserProducer=createUserProducer;
     }
 
     public Auth register(RegisterRequestDto dto){
@@ -32,7 +37,12 @@ public class AuthService extends ServiceManager<Auth,Long> {
             throw new AuthServiceException(EErrorType.REGISTER_ERROR_USERNAME);
         Auth auth=IAuthMapper.INSTANCE.toAuth(dto);
         save(auth);
-        iUserProfileManager.save(IAuthMapper.INSTANCE.fromAuth(auth));
+        //iUserProfileManager.save(IAuthMapper.INSTANCE.fromAuth(auth));
+        createUserProducer.convertAndSend(SaveAuthModel.builder()
+                        .authid(auth.getId())
+                        .email(auth.getEmail())
+                        .username(auth.getUsername())
+                .build());
         return auth;
     }
 
