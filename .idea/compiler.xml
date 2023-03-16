@@ -16,6 +16,7 @@
         <module name="MicroService.ProductMicroService.main" />
         <module name="MicroService.AuthMicroService.main" />
         <module name="MicroService.SalesMicroService.main" />
+        <module name="MicroService.ElasticMicroService.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17" />
