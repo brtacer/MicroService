@@ -1,6 +1,7 @@
 package com.berat.mapper;
 
 import com.berat.dto.request.UserProfileSaveRequestDto;
+import com.berat.rabbitmq.model.SaveAuthModel;
 import com.berat.repository.entity.UserProfile;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -11,4 +12,5 @@ public interface IUserProfileMapper {
     IUserProfileMapper INSTANCE= Mappers.getMapper(IUserProfileMapper.class);
 
     UserProfile toUserProfile(final UserProfileSaveRequestDto dto);
+    UserProfile toUserProfile(final SaveAuthModel model);
 }

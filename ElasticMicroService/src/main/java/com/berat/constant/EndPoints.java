@@ -12,6 +12,7 @@ public class EndPoints {
     public static final String UPDATE="/update";
     public static final String DELETE="/delete";
     public static final String GETALL="/getall";
+    public static final String GETALLPAGE="/getallpage";
     public static final String GETBYID="/getbyid";
     public static final String GETBYAD="/getbyad";
 

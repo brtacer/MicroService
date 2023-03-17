@@ -19,10 +19,6 @@ public class CreateUserConsumer {
     @RabbitListener(queues = "queue-auth")
     public void createUserFromHandleQueue(SaveAuthModel model){
         System.out.println("Gelen Data..: "+ model.getUsername());
-        userProfileService.save(UserProfile.builder()
-                        .authid(model.getAuthid())
-                        .username(model.getUsername())
-                        .username(model.getEmail())
-                .build());
+        userProfileService.saveRabbit(model);
     }
 }

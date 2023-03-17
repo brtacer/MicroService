@@ -14,7 +14,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/SaleDB
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 # Key/Value kullanımında : dan sonra mutlaka boşluk bırakın
 # key: deger
 
