@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface IUserProfileRepository extends ElasticsearchRepository<UserProfile,String> {
     boolean existsByUserprofileid(Long userprofileid);
+    Optional<UserProfile> findOptionalByAuthid(Long authid);
 }

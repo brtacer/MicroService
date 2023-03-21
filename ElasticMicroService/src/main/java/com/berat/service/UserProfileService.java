@@ -24,6 +24,9 @@ public class UserProfileService extends ServiceManager<UserProfile,String> {
         this.repository = repository;
     }
 
+    public Optional<UserProfile> findByAuthId(Long authId){
+        return repository.findOptionalByAuthid(authId);
+    }
     public void saveDto(AddUserRequest dto) {
         /**
          *  Aynı kullanıcı tekrar kaydedilmeye çalışıyor olabilir.
@@ -68,5 +71,6 @@ public class UserProfileService extends ServiceManager<UserProfile,String> {
             pageable =PageRequest.of(0,pageSize);
         }
         return repository.findAll(pageable);
+
     }
 }
