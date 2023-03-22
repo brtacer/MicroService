@@ -2,6 +2,7 @@ package com.berat.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -10,6 +11,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  *  Konfigürasyon dosyası olarak springe bildirecğimiz sınıflara ekliyoruz.
  */
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ElasticSecurityConfig {
 
     @Bean
@@ -29,7 +31,7 @@ public class ElasticSecurityConfig {
          *  Match("/{URLS}") için izin ver.
          */
         httpSecurity.authorizeRequests()
-                .antMatchers("/mylogin.html").permitAll()
+                .antMatchers("/mylogin.html","/v1/**").permitAll()
                 .anyRequest().authenticated();
         /**
          *  Yetkisiz girişlerde login formuna  yönlendirme ->
