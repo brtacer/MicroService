@@ -22,9 +22,9 @@ public class TestAndRun {
          * bu kodu yorum satırına almak doğru olacaktır.
          * çalışması sistemi etkilemeyen durumlarda thread içinde çalıştırmak doğru olacaktır.
          */
-        new Thread(()->{
-            run();
-        });
+//        new Thread(()->{
+//            run();
+//        });
         //run();
     }
     public void run(){

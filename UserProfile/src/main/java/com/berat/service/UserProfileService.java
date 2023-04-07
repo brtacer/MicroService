@@ -29,7 +29,7 @@ public class UserProfileService extends ServiceManager<UserProfile,Long> {
     public void saveRabbit(SaveAuthModel model){
         UserProfile userProfile=IUserProfileMapper.INSTANCE.toUserProfile(model);
         save(userProfile);
-        elasticServiceManager.addUser(userProfile);
+//        elasticServiceManager.addUser(userProfile);
 
     }
 

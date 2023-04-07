@@ -31,7 +31,7 @@ public class ElasticSecurityConfig {
          *  Match("/{URLS}") için izin ver.
          */
         httpSecurity.authorizeRequests()
-                .antMatchers("/mylogin.html","/v1/**").permitAll()
+                .antMatchers("/mylogin.html","/elastic/user/**").permitAll()
                 .anyRequest().authenticated();
         /**
          *  Yetkisiz girişlerde login formuna  yönlendirme ->
